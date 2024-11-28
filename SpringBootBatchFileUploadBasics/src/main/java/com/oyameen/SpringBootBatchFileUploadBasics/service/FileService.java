@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 @Slf4j
 public class FileService {
 
-    private static final String uploadDir = new FileSystemResource("src/main/resources/server_files/").getFile().getAbsolutePath() + File.separator;
+    private static final String uploadDir = new FileSystemResource("SpringBootBatchFileUploadBasics/src/main/resources/server_files/").getFile().getAbsolutePath() + File.separator;
 
     public File uploadCSVFile(MultipartFile multipartFile) throws IOException {
         String originalFileName = multipartFile.getOriginalFilename();
