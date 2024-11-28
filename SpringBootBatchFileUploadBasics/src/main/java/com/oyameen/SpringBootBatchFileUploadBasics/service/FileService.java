@@ -1,7 +1,6 @@
 package com.oyameen.SpringBootBatchFileUploadBasics.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.batch.core.JobExecution;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +18,12 @@ public class FileService {
 
     public File uploadCSVFile(MultipartFile multipartFile) throws IOException {
         String originalFileName = multipartFile.getOriginalFilename();
+        if (originalFileName == null || originalFileName.isEmpty()) {
+            throw new RuntimeException("Uploaded file name is null or empty.");
+        }
+        if (!originalFileName.endsWith(".csv")) {
+            throw new RuntimeException("Uploaded file is not csv file.");
+        }
         File file = new File(uploadDir + originalFileName);
         multipartFile.transferTo(file);
         return file;
