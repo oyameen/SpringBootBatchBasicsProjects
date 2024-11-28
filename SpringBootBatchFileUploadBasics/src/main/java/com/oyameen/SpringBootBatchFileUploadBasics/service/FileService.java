@@ -24,7 +24,7 @@ public class FileService {
         return file;
     }
 
-    public void deleteCSVFile(JobExecution jobExecution, String fileName) throws IOException {
+    public void deleteCSVFile(String fileName) throws IOException {
         Files.deleteIfExists(Paths.get(uploadDir + fileName));
     }
 

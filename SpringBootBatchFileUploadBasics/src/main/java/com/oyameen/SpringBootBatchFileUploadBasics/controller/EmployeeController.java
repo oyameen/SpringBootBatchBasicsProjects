@@ -36,8 +36,8 @@ public class EmployeeController {
                 .addLong("startAt", System.currentTimeMillis())
                 .addString("filePath", file.getAbsolutePath()).toJobParameters();
         try {
-            JobExecution jobExecution = jobLauncher.run(job, jobParameters);
-            fileService.deleteCSVFile(jobExecution, file.getName());
+            jobLauncher.run(job, jobParameters);
+            fileService.deleteCSVFile(file.getName());
         } catch (JobExecutionAlreadyRunningException | JobInstanceAlreadyCompleteException |
                  JobParametersInvalidException | JobRestartException e) {
             System.out.println("Exception occur while importing the employees = " + e.getMessage());
